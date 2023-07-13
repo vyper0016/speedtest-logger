@@ -2,9 +2,13 @@ import speedtest
 import time
 from datetime import datetime
 import json
+import configparser
 
-INTERVAL_TESTS = 15*60  #15 mins
-LOG_FILE = 'logs.json'
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+INTERVAL_TESTS = config['DEFAULT'].getint('interval')*60
+LOG_FILE = config['DEFAULT'].get('log path')
 
 servers = []
 # If you want to test against a specific server
